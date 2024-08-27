@@ -1,0 +1,16 @@
+spring:
+    application:
+        name: state-machine-test
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        password: root
+        url: jdbc:postgresql://localhost:15433/postgres
+        username: root
+    jpa:
+        properties:
+            hibernate:
+                format_sql: true
+        show-sql: true
+    threads:
+        virtual:
+            enabled: true

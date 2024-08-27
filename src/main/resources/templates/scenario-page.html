@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Scenario Details</title>
+    <link rel="stylesheet" href="/css/bootstrap.v5.3.0.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Scenarios Details</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Saved scenario name: <span th:text="${savedScenario.getScenario().getName()}"></span></h5>
+            <p class="card-text"><span th:text="${savedScenario.getScenario().getPatientId()}"></span></p>
+            <p class="card-text"><span th:text="${savedScenario.getCurrentState().getName()}"></span></p>
+            <p class="card-text"><span th:text="${savedScenario.getCurrentState().getDescription()}"></span></p>
+            <h3 th:if="${!savedScenario.getCurrentState().isFinal}" >Correct answers: </h3>
+            <h3 th:if="${savedScenario.getCurrentState().isFinal}" th:text="'Your score: '+${savedScenario.getScore()}"></h3>
+            <div th:each="transition: ${savedScenario.getCurrentState().getAvailableTransitions()}" class="form-check">
+                <p class="card-text" th:text="${transition.getCondition()}"></p>
+            </div>
+            <form th:if="${!savedScenario.getCurrentState().isFinal}" th:action="@{/submit-answer}" method="post">
+                <div>
+                    <label for="answer">Answer:</label>
+                    <input type="text" id="answer" name="answer"/>
+                    <input type="hidden" name="scenarioId" th:value="${savedScenario.id}"/>
+                </div>
+                <!--                <div th:each="transition: ${savedScenario.getCurrentState().getAvailableTransitions()}" class="form-check">-->
+                <!--                    <label>-->
+                <!--                        <input type="checkbox" th:attr="name=${transition.condition}" th:checked="${transition.condition}" class="form-check-input">-->
+                <!--                    </label>-->
+                <!--                    <label class="form-check-label" th:for="${savedScenario.getCurrentState().getId()}+${transition.id}"-->
+                <!--                           th:text="${transition.condition}"></label>-->
+                <!--                </div>-->
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+            <a href="/" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+mindmapDiagram {
+  node {
+    BackgroundColor lightGreen
+  }
+  boxless {
+    FontColor darkgreen
+  }
+}
+</style>
+*[#LightGrey] Scenario1
+**[#Orange] Introduction
+***_ condition1 && condition2
+****[#LightBlue] Stage1
+*****_ condition4 && condition5
+******[#Pink] Stage2a
+*******_ condition8
+******** Final bad stage
+*****_ condition4 && condition5=false
+******[#Pink] Stage2b
+*******_ condition6 || condition7
+******** Final good stage
+
+'*[#LightGrey] Scenario2
+'**[#Orange] Introduction
+'***_ condition1
+'****[#LightBlue] Stage1a
+'***_ condition2
+'****[#LightBlue] Stage1b
+'***_ condition3
+'****[#LightBlue] Stage1c
+'*****_ condition4 && condition5
+'******[#Pink] Stage2a
+'*****_ condition4 && condition5=false
+'******[#Pink] Stage2b
+'*******_ condition6 || condition7
+'******** Final stage
+
+@endmindmap

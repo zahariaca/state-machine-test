@@ -1,0 +1,17 @@
+name: vitalaudio-be
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: bc
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "15433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
